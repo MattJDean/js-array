@@ -31,7 +31,7 @@
 <p>The user can select the image source using a <strong>toggle switch</strong> (Unsplash or Pexels). Upon clicking the "Fetch Image" button, the app calls the respective API (Unsplash or Pexels), retrieves a random image, and displays it on the screen.</p>
 
 <h3>Image Assignment</h3>
-<p>The user enters an email address and assigns the fetched image to that email. All assigned images are stored in arrays, and the app allows the user to manage them (mark as favorite, view in full screen, delete).</p>
+<p>The user enters an email address and assigns the fetched image to that email. All assigned images are stored in arrays, and the app allows the user to manage them (mark as favourite, view in full screen, delete).</p>
 
 <h3>Image Vault</h3>
 <p>The images are displayed in a grid layout, each with the following interactive options:</p>
