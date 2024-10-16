@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImageVault</title>
+    <link rel="shortcut icon" type="image/jpg" href="/public/favicon.png"/>
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css" />
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/ee55ddb165.js" crossorigin="anonymous"></script>   
+</head>
+
+<body class="bg-neutral-50 text-zinc-900 min-h-screen flex flex-col">
+
+        
+    <div x-data="{ aboutOpen: false, ...imageApp() }" x-init="init()" class="flex-grow">
+     
+
+        <!-- Header -->
+        <header class="bg-zinc-100 p-4 shadow-md">
+            <div class="container mx-auto flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex flex-row text-xl font-bold"><img src="assets/img/iv-logo.png" alt="logo" class="object-cover w-10 h-10 mx-2"><span class="font-['Noto\\ Sans'] text-2xl font-semibold text-center justify-center mt-1">ImageVault</span></div>
+    
+                <!-- Navigation Menu -->
+                <nav class="space-x-6 text-xl text-center">
+                    <button @click="aboutOpen = !aboutOpen" class="hover:text-indigo-700 focus:outline-none">
+                        <i class="fa-solid fa-info"></i> 
+                    </button>
+                    <a href="mailto:matthew.dean@netmatters-scs.com" class="hover:text-red-400"><i class="fa-regular fa-envelope"></i></a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Backdrop -->
+        <div x-show="aboutOpen" 
+            x-transition:enter="transition ease-out duration-300" 
+            x-transition:enter-start="opacity-0" 
+            x-transition:enter-end="opacity-100" 
+            x-transition:leave="transition ease-in duration-200" 
+            x-transition:leave-start="opacity-100" 
+            x-transition:leave-end="opacity-0" 
+            class="fixed inset-0 bg-black bg-opacity-50 z-40">
+        </div>
+
+        <!-- About Modal -->
+        <section class="container mx-auto p-8">
+            <div x-show="aboutOpen" 
+                x-transition:enter="transition ease-out duration-300" 
+                x-transition:enter-start="opacity-0 transform scale-95" 
+                x-transition:enter-end="opacity-100 transform scale-100" 
+                x-transition:leave="transition ease-in duration-200" 
+                x-transition:leave-start="opacity-100 transform scale-100" 
+                x-transition:leave-end="opacity-0 transform scale-95" 
+                class="fixed inset-0 flex items-center justify-center z-50">
+
+              <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-lg relative">
+                <!-- Close Button -->
+                <button @click="aboutOpen = false" class="absolute top-2 right-3 text-gray-400 hover:text-gray-700 focus:outline-none">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <!-- Content -->
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">About This App</h2>
+                <p class="text-gray-600 mb-4">ImageVault allows users to assign images to their own 'vault' using their email, demonstrating the use of arrays in JavaScript and API integration.</p>
+                <p class="text-gray-600">The app was built using Tailwind CSS, Alpine.js and the <strong><a href="https://www.unsplash.com/" target="_blank">Unsplash</a></strong> / <strong><a href="https://www.pexels.com/" target="_blank">Pexels</a></strong> APIs.</p>
+              </div>
+            </div>
+        </section>
+
+        <!-- Image Fetch Section -->
+        <section class="container flex flex-col self-center items-center p-4 mx-auto rounded-xl shadow-xl">
+            
+            <!-- Loading Spinner -->
+            <div x-show="loading" class="w-16 h-16 border-4 border-dashed border-gray-800 rounded-full animate-spin mb-4"></div>
+
+            <div class="relative group">
+                <!-- Display Image -->
+                <div x-show="image && image.url" class="-m-0">
+                    <img :src="image?.url" alt="Random Image" class="object-cover w-72 h-72 sm:w-96 sm:h-96 lg:w-[600px] lg:h-[600px] mx-auto rounded-xl shadow-xl mb-2">
+                </div>
+
+                <!-- Tooltip --> 
+                <div class="absolute top-0 left-0 w-full rounded bg-gray-700 text-white text-xs p-2 opacity-0 group-hover:opacity-90 transition-opacity">
+                    <p class="italic" x-text="image?.description ? image.description : 'No description available'"></p>
+                    <p>Photographer:&nbsp;  
+                    <a :href="image?.profileLink" target="_blank"  rel="noopener noreferrer" class="hover:text-blue-400 hover:cursor-pointer" x-text="image?.photographer"></a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Toggle Switch for Image Source -->
+            <div class="flex items-center space-x-2">
+                <label class="text-gray-700">Source:</label>
+                <div class="flex items-center space-x-1">
+                    <input type="radio" id="unsplash" value="unsplash" x-model="source" class="form-radio h-6 w-6 cursor-pointer">
+                    <label for="unsplash">Unsplash</label>
+                    <input type="radio" id="pexels" value="pexels" x-model="source" class="form-radio cursor-pointer">
+                    <label for="pexels">Pexels</label>
+                </div>
+            </div>
+
+            <!-- New Image Button -->
+            <button @click="fetchImage" class="bg-slate-500 text-white p-2 py-1 m-4 mb-6 rounded hover:bg-slate-600" :disabled="loading" :class="loading ? 'opacity-50 cursor-not-allowed' : ''">
+                <i class="fa-solid fa-repeat leading-6"></i>
+            </button>
+
+            <!-- Email Assign -->
+            <div class="relative flex flex-row items-center mb-6">
+                <input type="email" placeholder="Enter email" x-model="email" class="border p-2 rounded w-full mb-2" required @keydown.enter="assignImage()">
+                <button @click="assignImage()" class="absolute left-40 bg-slate-500 text-white p-1.5 px-3 rounded hover:bg-slate-600 hover:cursor-pointer mb-2" :disabled="!image || !email">
+                    <i class="fa-solid fa-right-to-bracket text-xl"></i>
+                </button>
+                <!-- Display error if the validation fails -->
+                <p class="text-red-500 text-sm" x-show="emailError" x-text="emailError"></p>
+            </div>
+        </section>
+
+        <!-- Full Screen Modal -->
+        <div x-show="isModalOpen" 
+            class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50"
+            x-transition:enter="transition ease-in duration-300" 
+            x-transition:enter-start="opacity-0 transform scale-95" 
+            x-transition:enter-end="opacity-100 transform scale-100"
+            x-transition:leave="transition ease-out duration-300" 
+            x-transition:leave-start="opacity-100 transform scale-100" 
+            x-transition:leave-end="opacity-0 transform scale-95">
+
+            <!-- Modal Content -->
+            <div class="relative w-11/12 max-w-4xl bg-transparent p-0 rounded-lg shadow-lg">
+
+            <!-- Display image info -->
+            <div class="absolute top-0 left-0 w-auto bg-gray-800 text-white text-xs p-2 opacity-80 rounded-lg">
+                <strong>Photographer:</strong>&nbsp;<span class="text-xs" x-text="modalImage?.photographer"></span><br>
+                <strong>Profile:</strong>&nbsp;<a :href="modalImage?.profileLink" target="_blank" class="text-blue-600 hover:underline" x-text="modalImage?.profileLink"></a>
+          </div>
+            
+            <!-- Close Button -->
+            <button @click="closeModal()" class="absolute top-2 right-2 text-white hover:text-black">
+                <i class="fas fa-times text-4xl"></i> 
+            </button>
+            
+            <!-- Full Screen Image -->
+            <img :src="modalImage.url" alt="Full Screen Image" class="w-full h-screen object-scale-down rounded-lg">
+            
+            </div>
+        </div>
+
+        <!-- Information Modal -->
+        <div x-show="isInfoModalOpen" 
+            class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50"
+            x-transition:enter="transition ease-out duration-300" 
+            x-transition:enter-start="opacity-0 transform scale-95" 
+            x-transition:enter-end="opacity-100 transform scale-100"
+            x-transition:leave="transition ease-in duration-200" 
+            x-transition:leave-start="opacity-100 transform scale-100" 
+            x-transition:leave-end="opacity-0 transform scale-95">
+
+            <!-- Modal Content -->
+            <div class="relative w-auto max-w-2xl bg-white p-6 rounded-lg shadow-lg">
+                
+                <!-- Close Button -->
+                <button @click="closeInfoModal()" class="absolute top-2 right-2 text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-xl"></i> 
+                </button>
+                
+                <!-- Image Information -->
+                <span><i class="fa-solid fa-info text-2xl mb-6 opacity-60"></i></span>
+                <p><strong>Description:</strong> <span x-text="infoImage?.description ? infoImage.description : 'No description available'"></span></p>
+                <p><strong>Photographer:</strong> <span x-text="infoImage?.photographer"></span></p>
+                <p><strong>Profile:</strong> <a :href="infoImage?.profileLink" target="_blank" class="text-blue-600 hover:underline" x-text="infoImage?.profileLink"></a></p>
+            </div>
+        </div>
+
+
+        <!-- Assigned Images Section -->
+        <div x-show="Object.keys(assignments).length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-4">
+            <template x-for="(images, email) in assignments" :key="email">
+                <div class="shadow-xl rounded-lg w-auto p-4 pb-4 mb-6 relative">
+                    <h3 class="text-md font-semibold" x-text="email"></h3>
+                    <div class="grid grid-flow-row grid-cols-4 grid-rows-4 gap-2 mt-4">
+                        <template x-for="(img, index) in images" :key="img.url">
+                            
+                            <div
+                            :class="{
+                                'col-span-2 row-span-2': index === 0,
+                                'col-start-3': index === 1,
+                                'col-start-4': index === 2,
+                                'col-start-3 row-start-2': index === 3,
+                                'col-start-4 row-start-2': index === 4,
+                                'row-start-3': index === 5,
+                                'row-start-3': index === 6,
+                                'col-span-2 row-span-2 row-start-3': index === 7,
+                                'row-start-4': index === 8,
+                                'row-start-4': index === 9
+                            }"
+                            >
+                                <div class="relative w-full h-full object-cover rounded shadow-lg mt-2 group">
+                                    <!-- Star Icon for Favourite -->
+                                    <div class="absolute top-1 right-2" x-show="img.favourite">
+                                        <i class="fas fa-star text-yellow-500"></i> 
+                                    </div>
+                                    <img :src="img.url" alt="Assigned Image" class="w-full h-full object-cover rounded shadow-lg mt-2">
+                                    
+                                    <!-- Hover Buttons (Favorite, View, Delete) -->
+                                    <div class="absolute left-1 top-1.5 flex p-0 opacity-0 z-10 group-hover:opacity-70 transition-opacity">
+                                        <!-- Favourite -->
+                                        <button 
+                                            class="w-6 h-6 flex content-center justify-center mr-1 bg-gray-700 text-white rounded-full p-1 hover:bg-yellow-500"
+                                            @click="handleFavourite(email, img.id)"
+                                        >
+                                            <i class="fas fa-star text-sm leading-4 align-middle"></i>
+                                        </button>
+
+                                        <!-- Info Button -->
+                                        <button 
+                                            class="w-6 h-6 flex items-center justify-center mr-1 bg-gray-700 text-white rounded-full p-1 hover:bg-green-500"
+                                            @click="openInfoModal(img)"
+                                            >
+                                            <i class="fa-solid fa-info text-sm leading-4 align-middle"></i> 
+                                        </button>
+
+                                        <!-- View full screen -->
+                                        <button 
+                                            class="w-6 h-6 flex content-center justify-center mr-1 bg-gray-700 text-white rounded-full p-1 hover:bg-blue-500"
+                                            @click="openModal(img)"
+                                        >
+                                            <i class="fas fa-search text-sm leading-4 align-middle"></i>
+                                        </button>
+
+                                        <!-- Delete image -->
+                                        <button 
+                                            class="w-6 h-6 flex content-center justify-center mr-1 bg-gray-700 text-white rounded-full p-1 hover:bg-red-500"
+                                            @click="openDeleteModal(email, img.id)"
+                                        >
+                                            <i class="fas fa-trash text-sm leading-4 align-middle"></i>
+                                        </button>
+                                        <!-- Delete Confirmation Modal -->
+                                        <div x-show="showDeleteModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center">
+                                            <div class="bg-white p-4 rounded-lg shadow-lg w-96">
+                                                <h2 class="text-xl font-bold mb-4">Are you sure?</h2>
+                                                <p class="mb-4">Do you really want to delete this image?</p>
+                                                
+                                                <!-- Buttons for confirmation -->
+                                                <div class="flex justify-end space-x-2">
+                                                    <button @click="confirmDelete()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Delete</button>
+                                                    <button @click="cancelDelete()" class="bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                              </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <!-- Footer -->
+        <footer class="fixed bottom-0 w-full bg-zinc-50 text-xs p-1">
+            <div class="container mx-auto text-left">
+                &copy; 2024 Matt Dean.
+            </div>
+        </footer>
+
+<!-- Link to external JS -->
+<script src="assets/js/app.js"></script>
+</body>
+</html>

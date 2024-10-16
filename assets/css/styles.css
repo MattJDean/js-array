@@ -1,0 +1,12 @@
+/*Animations*/
+
+.fade-in {
+    transition: opacity 0.3s ease-in-out;
+}
+.fade-in-enter {
+    opacity: 0;
+}
+.fade-in-enter-active {
+    opacity: 1;
+}
+
