@@ -1,5 +1,7 @@
 <h1>ImageVault</h1>
 
+<p>This is my Javascript Array assessment project for the <a href="https://www.netmatters.co.uk/train-for-a-career-in-tech" target="_blank">Netmatters Scion Coalition Scheme.</a></p>
+<br>
 <p>ImageVault is a web application that allows users to assign images from various sources (e.g., Unsplash, Pexels) to their own 'vault' using their email. The app demonstrates the use of JavaScript arrays, API integration, and modern front-end development techniques.</p>
 
 <h2>Features</h2>
