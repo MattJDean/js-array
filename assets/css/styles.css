@@ -2,6 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+        margin-right:auto;
+        margin-left:auto;
+        padding-left:15px;
+        padding-right:15px
+      }
+      @media (min-width:768px) {
+        body {
+          width:750px
+        }
+      }
+      @media (min-width:992px) {
+        body {
+          width:970px
+        }
+      }
+      @media (min-width:1280px) {
+        body {
+          width:1200px
+        }
+      }
+      @media (min-width:1536px) {
+        body {
+          width:1500px
+        }
+      }
+      @media (min-width:1800px) {
+        body {
+          width:1800px
+        }
+      }
+      @media (min-width:2000px) {
+        body {
+          width:2000px
+        }
+      }
+      @media (min-width:2250px) {
+        body {
+          width:2250px
+        }
+      }
+    
+
 
 /*Animations*/
 
@@ -16,28 +59,44 @@
 }
 
 
+
 /* Neumorphic styles */
 .neumorphic {
-    background: #e0e0e0;
-    border-radius: 20px;
-    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+    background: #e0e0e0 !important;
+    border-radius: 20px !important;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff !important;
 }
 
 .neumorphic-input {
-    background: #e0e0e0;
-    border-radius: 10px;
-    box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
-    padding: 0.5rem 1rem;
+    background: #e0e0e0 !important;
+    border-radius: 10px !important;
+    box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.neumorphic-input:focus,
+.neumorphic-input:active {
+    outline: none !important;
+    box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff !important;
+    background: #e0e0e0 !important;
 }
 
 .neumorphic-button {
-    background: #e0e0e0;
-    border-radius: 30px;
-    box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff;
-    padding: 0.75rem 1.5rem;
-    transition: box-shadow 0.2s ease;
+    background: #e0e0e0 !important;
+    border-radius: 30px !important;
+    box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff !important;
+    padding: 0.75rem 1.5rem !important;
+    transition: box-shadow 0.2s ease !important;
 }
 
 .neumorphic-button:hover {
-    box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+    box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff !important;
 }
+
+.neumorphic-input:checked {
+    background: #e0e0e0 !important;
+    border-radius: 10px !important;
+    box-shadow: 5px 5px 10px #ffffff, -5px -5px 10px #bebebe !important;
+    padding: 0.5rem 1rem !important;
+}
+

@@ -14,7 +14,8 @@ function imageApp() {
         isModalOpen: false,    
         modalImage: {},
         isInfoModalOpen: false,  
-        infoImage: {},  
+        infoImage: {}, 
+        
 
         // Automatically fetch an image when the page loads
         init() {
@@ -95,17 +96,6 @@ function imageApp() {
           
         },
 
-        // Function to open the info modal 
-        openInfoModal(img) {
-            this.infoImage = img;
-            this.isInfoModalOpen = true;
-        },
-
-        // Function to close the info modal
-        closeInfoModal() {
-            this.isInfoModalOpen = false;
-            this.infoImage = {};
-        },
 
         // Open modal to view full-screen image
         openModal(img) {
@@ -119,7 +109,6 @@ function imageApp() {
             this.isModalOpen = false;
             this.modalImage = {};
         },
-
 
 
         // Open the delete modal and set the image and email for deletion
@@ -154,6 +143,7 @@ function imageApp() {
             }
 
         },
+
 
         // Email Regex Validation
          isValidEmail(email) {
