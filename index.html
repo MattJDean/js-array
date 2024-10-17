@@ -12,27 +12,33 @@
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
     <!-- FontAwesome -->
-    <script src="https://kit.fontawesome.com/ee55ddb165.js" crossorigin="anonymous"></script>   
+    <script src="https://kit.fontawesome.com/ee55ddb165.js" crossorigin="anonymous"></script>  
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-neutral-50 text-zinc-900 min-h-screen flex flex-col">
+<body class="bg-neutral-50 text-zinc-900 min-h-screen flex flex-col font-['nunito'] neumorphic">
 
         
     <div x-data="{ aboutOpen: false, ...imageApp() }" x-init="init()" class="flex-grow">
      
 
         <!-- Header -->
-        <header class="bg-zinc-100 p-4 shadow-md">
+        <header class="bg-zinc-100 p-4 shadow-md neumorphic">
             <div class="container mx-auto flex justify-between items-center">
                 <!-- Logo -->
-                <div class="flex flex-row text-xl font-bold"><img src="assets/img/iv-logo.png" alt="logo" class="object-cover w-10 h-10 mx-2"><span class="font-['Noto\\ Sans'] text-2xl font-semibold text-center justify-center mt-1">ImageVault</span></div>
+                <div class="flex flex-row text-xl"><img src="assets/img/iv-logo.png" alt="logo" class="object-cover w-10 h-10 mx-2"><span class="font-['nunito'] text-2xl font-medium text-center justify-center mt-1">ImageVault</span></div>
     
                 <!-- Navigation Menu -->
-                <nav class="space-x-6 text-xl text-center">
-                    <button @click="aboutOpen = !aboutOpen" class="hover:text-indigo-700 focus:outline-none">
-                        <i class="fa-solid fa-info"></i> 
+                <nav class="space-x-2 text-xl text-center">
+                    <button @click="aboutOpen = !aboutOpen" class="w-auto text-black hover:text-[#79797a] focus:outline-none">
+                        <i class="fa-solid fa-info neumorphic-button px-7"></i> 
                     </button>
-                    <a href="mailto:matthew.dean@netmatters-scs.com" class="hover:text-red-400"><i class="fa-regular fa-envelope"></i></a>
+                    <button class="w-auto text-black hover:text-[#79797a] px-6">
+                    <a href="mailto:matthew.dean@netmatters-scs.com"><i class="fa-regular fa-envelope neumorphic-button"></i></a>
+                    </button>
                 </nav>
             </div>
         </header>
@@ -59,13 +65,13 @@
                 x-transition:leave-end="opacity-0 transform scale-95" 
                 class="fixed inset-0 flex items-center justify-center z-50">
 
-              <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-lg relative">
+              <div class="rounded-lg shadow-lg p-8 w-full max-w-lg font-['nunito'] relative neumorphic">
                 <!-- Close Button -->
-                <button @click="aboutOpen = false" class="absolute top-2 right-3 text-gray-400 hover:text-gray-700 focus:outline-none">
+                <button @click="aboutOpen = false" class="absolute top-3 right-3 text-gray-700 neumorphic-button p-1 px-3 hover:text-gray-500 focus:outline-none">
                     <i class="fas fa-times text-xl"></i>
                 </button>
                 <!-- Content -->
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">About This App</h2>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">What's this?</h2>
                 <p class="text-gray-600 mb-4">ImageVault allows users to assign images to their own 'vault' using their email, demonstrating the use of arrays in JavaScript and API integration.</p>
                 <p class="text-gray-600">The app was built using Tailwind CSS, Alpine.js and the <strong><a href="https://www.unsplash.com/" target="_blank">Unsplash</a></strong> / <strong><a href="https://www.pexels.com/" target="_blank">Pexels</a></strong> APIs.</p>
               </div>
@@ -73,15 +79,15 @@
         </section>
 
         <!-- Image Fetch Section -->
-        <section class="container flex flex-col self-center items-center p-4 mx-auto rounded-xl shadow-xl">
+        <section class="container flex flex-col self-center items-center w-[800px] p-8 pt-12 mx-auto rounded-xl shadow-xl neumorphic">
             
             <!-- Loading Spinner -->
             <div x-show="loading" class="w-16 h-16 border-4 border-dashed border-gray-800 rounded-full animate-spin mb-4"></div>
 
             <div class="relative group">
                 <!-- Display Image -->
-                <div x-show="image && image.url" class="-m-0">
-                    <img :src="image?.url" alt="Random Image" class="object-cover w-72 h-72 sm:w-96 sm:h-96 lg:w-[600px] lg:h-[600px] mx-auto rounded-xl shadow-xl mb-2">
+                <div x-show="image && image.url" class="-m-0 neumorphic">
+                    <img :src="image?.url" alt="Random Image" class="object-cover w-72 h-72 sm:w-96 sm:h-96 lg:w-[600px] lg:h-[600px] mx-auto rounded-xl shadow-xl mb-2 neumorphic">
                 </div>
 
                 <!-- Tooltip --> 
@@ -94,25 +100,25 @@
             </div>
 
             <!-- Toggle Switch for Image Source -->
-            <div class="flex items-center space-x-2">
+            <div class="flex items-center space-x-2 neumorphic">
                 <label class="text-gray-700">Source:</label>
                 <div class="flex items-center space-x-1">
-                    <input type="radio" id="unsplash" value="unsplash" x-model="source" class="form-radio h-6 w-6 cursor-pointer">
+                    <input type="radio" id="unsplash" value="unsplash" x-model="source" class="form-radio h-4 w-4 cursor-pointer">
                     <label for="unsplash">Unsplash</label>
-                    <input type="radio" id="pexels" value="pexels" x-model="source" class="form-radio cursor-pointer">
+                    <input type="radio" id="pexels" value="pexels" x-model="source" class="form-radio h-4 w-4 cursor-pointer">
                     <label for="pexels">Pexels</label>
                 </div>
             </div>
 
             <!-- New Image Button -->
-            <button @click="fetchImage" class="bg-slate-500 text-white p-2 py-1 m-4 mb-6 rounded hover:bg-slate-600" :disabled="loading" :class="loading ? 'opacity-50 cursor-not-allowed' : ''">
+            <button @click="fetchImage" class="neumorphic-button text-black text-2xl p-2 py-1 m-4 mb-6 rounded hover:bg-['#bebebe']" :disabled="loading" :class="loading ? 'opacity-50 cursor-not-allowed' : ''">
                 <i class="fa-solid fa-repeat leading-6"></i>
             </button>
 
             <!-- Email Assign -->
             <div class="relative flex flex-row items-center mb-6">
-                <input type="email" placeholder="Enter email" x-model="email" class="border p-2 rounded w-full mb-2" required @keydown.enter="assignImage()">
-                <button @click="assignImage()" class="absolute left-40 bg-slate-500 text-white p-1.5 px-3 rounded hover:bg-slate-600 hover:cursor-pointer mb-2" :disabled="!image || !email">
+                <input type="email" placeholder="Enter email" x-model="email" class="border p-2 rounded w-full mb-2 neumorphic-input" required @keydown.enter="assignImage()">
+                <button @click="assignImage()" class="absolute left-44 neumorphic-button text-black p-1.5 px-3 rounded hover:bg-['#bebebe'] hover:cursor-pointer mb-2" :disabled="!image || !email">
                     <i class="fa-solid fa-right-to-bracket text-xl"></i>
                 </button>
                 <!-- Display error if the validation fails -->
@@ -140,7 +146,7 @@
           </div>
             
             <!-- Close Button -->
-            <button @click="closeModal()" class="absolute top-2 right-2 text-white hover:text-black">
+            <button @click="closeModal()" class="absolute top-3 right-3 text-white hover:text-black neumorphic-button">
                 <i class="fas fa-times text-4xl"></i> 
             </button>
             
@@ -161,10 +167,10 @@
             x-transition:leave-end="opacity-0 transform scale-95">
 
             <!-- Modal Content -->
-            <div class="relative w-auto max-w-2xl bg-white p-6 rounded-lg shadow-lg">
+            <div class="relative w-auto max-w-2xl p-6 neumorphic">
                 
                 <!-- Close Button -->
-                <button @click="closeInfoModal()" class="absolute top-2 right-2 text-gray-600 hover:text-gray-900">
+                <button @click="closeInfoModal()" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 neumorphic-button">
                     <i class="fas fa-times text-xl"></i> 
                 </button>
                 
@@ -178,11 +184,12 @@
 
 
         <!-- Assigned Images Section -->
-        <div x-show="Object.keys(assignments).length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-4">
+        <div x-show="Object.keys(assignments).length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-4 bg-transparent">
             <template x-for="(images, email) in assignments" :key="email">
-                <div class="shadow-xl rounded-lg w-auto p-4 pb-4 mb-6 relative">
-                    <h3 class="text-md font-semibold" x-text="email"></h3>
-                    <div class="grid grid-flow-row grid-cols-4 grid-rows-4 gap-2 mt-4">
+                <div class="bg-transparent rounded-lg w-auto p-4 pb-4 mb-6 relative">
+                    
+                    <div class="grid grid-flow-row grid-cols-4 grid-rows-4 gap-2 py-8 px-4 mt-2 neumorphic">
+                        <h3 class="absolute top-9 left-9 text-gray-500 text-sm uppercase font-semibold" x-text="email"></h3>
                         <template x-for="(img, index) in images" :key="img.url">
                             
                             <div
@@ -204,7 +211,7 @@
                                     <div class="absolute top-1 right-2" x-show="img.favourite">
                                         <i class="fas fa-star text-yellow-500"></i> 
                                     </div>
-                                    <img :src="img.url" alt="Assigned Image" class="w-full h-full object-cover rounded shadow-lg mt-2">
+                                    <img :src="img.url" alt="Assigned Image" class="w-full h-full object-cover rounded-2xl shadow-lg mt-2">
                                     
                                     <!-- Hover Buttons (Favorite, View, Delete) -->
                                     <div class="absolute left-1 top-1.5 flex p-0 opacity-0 z-10 group-hover:opacity-70 transition-opacity">
@@ -241,14 +248,14 @@
                                         </button>
                                         <!-- Delete Confirmation Modal -->
                                         <div x-show="showDeleteModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center">
-                                            <div class="bg-white p-4 rounded-lg shadow-lg w-96">
+                                            <div class="p-4 rounded-lg shadow-lg w-96 neumorphic">
                                                 <h2 class="text-xl font-bold mb-4">Are you sure?</h2>
                                                 <p class="mb-4">Do you really want to delete this image?</p>
                                                 
                                                 <!-- Buttons for confirmation -->
                                                 <div class="flex justify-end space-x-2">
-                                                    <button @click="confirmDelete()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Delete</button>
-                                                    <button @click="cancelDelete()" class="bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400">Cancel</button>
+                                                    <button @click="confirmDelete()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 neumorphic-button">Delete</button>
+                                                    <button @click="cancelDelete()" class="bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400 neumorphic-button">Cancel</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -262,7 +269,7 @@
         </div>
 
         <!-- Footer -->
-        <footer class="fixed bottom-0 w-full bg-zinc-50 text-xs p-1">
+        <footer class="fixed bottom-0 w-full text-xs p-1 neumorphic">
             <div class="container mx-auto text-left">
                 &copy; 2024 Matt Dean.
             </div>

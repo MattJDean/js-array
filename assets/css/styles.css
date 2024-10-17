@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 /*Animations*/
 
 .fade-in {
@@ -10,3 +15,29 @@
     opacity: 1;
 }
 
+
+/* Neumorphic styles */
+.neumorphic {
+    background: #e0e0e0;
+    border-radius: 20px;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
+
+.neumorphic-input {
+    background: #e0e0e0;
+    border-radius: 10px;
+    box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
+    padding: 0.5rem 1rem;
+}
+
+.neumorphic-button {
+    background: #e0e0e0;
+    border-radius: 30px;
+    box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff;
+    padding: 0.75rem 1.5rem;
+    transition: box-shadow 0.2s ease;
+}
+
+.neumorphic-button:hover {
+    box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+}
