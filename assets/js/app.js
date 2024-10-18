@@ -1,13 +1,14 @@
 
 // Image Fetch
 function imageApp() {
+
     return {
         image: null,
         loading: false,
         email: '', 
         assignments: {},
         emailError: '',
-        source: 'unsplash',
+        source: 'unsplash', //Unsplash is the default fetch source
         showDeleteModal: false, 
         deleteImageId: null, 
         deleteImageEmail: null,
@@ -141,7 +142,6 @@ function imageApp() {
                 }
                 localStorage.setItem('assignments', JSON.stringify(this.assignments));
             }
-
         },
 
 
@@ -170,7 +170,7 @@ function imageApp() {
                 this.assignments[this.email] = [];
             }
 
-             // Generate unique ID 
+            
             const newImage = { ...this.image, id: this.generateUniqueId() };
 
             this.assignments[this.email].push(newImage);

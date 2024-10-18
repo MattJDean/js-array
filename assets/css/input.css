@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+        margin-right:auto;
+        margin-left:auto;
+        padding-left:15px;
+        padding-right:15px
+      }
+      @media (min-width:768px) {
+        body {
+          width:750px
+        }
+      }
+      @media (min-width:992px) {
+        body {
+          width:970px
+        }
+      }
+      @media (min-width:1280px) {
+        body {
+          width:1200px
+        }
+      }
+      @media (min-width:1536px) {
+        body {
+          width:1500px
+        }
+      }
+      @media (min-width:1800px) {
+        body {
+          width:1800px
+        }
+      }
+      @media (min-width:2000px) {
+        body {
+          width:2000px
+        }
+      }
+      @media (min-width:2250px) {
+        body {
+          width:2250px
+        }
+      }
+    
+
+
+/*Animations*/
+
+.fade-in {
+    transition: opacity 0.3s ease-in-out;
+}
+.fade-in-enter {
+    opacity: 0;
+}
+.fade-in-enter-active {
+    opacity: 1;
+}
+
+
+
+/* Neumorphic styles */
+.neumorphic {
+    background: #e0e0e0 !important;
+    border-radius: 20px !important;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff !important;
+}
+
+.neumorphic-input {
+    background: #e0e0e0 !important;
+    border-radius: 10px !important;
+    box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.neumorphic-input:focus,
+.neumorphic-input:active {
+    outline: none !important;
+    box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff !important;
+    background: #e0e0e0 !important;
+}
+
+.neumorphic-button {
+    background: #e0e0e0 !important;
+    border-radius: 30px !important;
+    box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff !important;
+    padding: 0.75rem 1.5rem !important;
+    transition: box-shadow 0.2s ease !important;
+}
+
+.neumorphic-button:hover {
+    box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff !important;
+}
+
+.neumorphic-input:checked {
+    background: #e0e0e0 !important;
+    border-radius: 10px !important;
+    box-shadow: 5px 5px 10px #ffffff, -5px -5px 10px #bebebe !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.neumorphic-text {
+  color: #e0e0e0;
+  text-shadow: 
+  -8px -8px 12px rgba(255,255,255,0.4),
+  8px 8px 12px rgba(0,0,0,0.08);
+  outline: none;
+}
+
+.image-grid {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-auto-flow: row dense;
+  grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+  gap: 0.25rem;
+}
+
+@media (min-width:450px) {
+  .image-grid {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-auto-flow: row dense;
+    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+    gap: 0.5rem;
+  }
+}
+@media (min-width:768px) {
+  .image-grid {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-auto-flow: row dense;
+    grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+    gap: 0.5rem;
+  }
+}
+@media (min-width:1024px) {
+  .image-grid {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-auto-flow: row dense;
+    grid-template-columns: repeat(auto-fit,minmax(100px,.75fr));
+    gap: 0.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .label-text {
+    font-size: 0.6rem !important;
+  }
+}

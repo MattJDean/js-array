@@ -1,49 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-body {
-        margin-right:auto;
-        margin-left:auto;
-        padding-left:15px;
-        padding-right:15px
-      }
-      @media (min-width:768px) {
-        body {
-          width:750px
-        }
-      }
-      @media (min-width:992px) {
-        body {
-          width:970px
-        }
-      }
-      @media (min-width:1280px) {
-        body {
-          width:1200px
-        }
-      }
-      @media (min-width:1536px) {
-        body {
-          width:1500px
-        }
-      }
-      @media (min-width:1800px) {
-        body {
-          width:1800px
-        }
-      }
-      @media (min-width:2000px) {
-        body {
-          width:2000px
-        }
-      }
-      @media (min-width:2250px) {
-        body {
-          width:2250px
-        }
-      }
-    
+#header {
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+
+}
 
 
 /*Animations*/
@@ -63,7 +23,7 @@ body {
 /* Neumorphic styles */
 .neumorphic {
     background: #e0e0e0 !important;
-    border-radius: 20px !important;
+    border-radius: 20px;
     box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff !important;
 }
 
@@ -99,4 +59,5 @@ body {
     box-shadow: 5px 5px 10px #ffffff, -5px -5px 10px #bebebe !important;
     padding: 0.5rem 1rem !important;
 }
+
 
