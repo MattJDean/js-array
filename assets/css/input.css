@@ -112,7 +112,7 @@ body {
   display: grid;
   grid-auto-rows: auto;
   grid-auto-flow: row dense;
-  grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
   gap: 0.25rem;
 }
 
@@ -121,7 +121,7 @@ body {
     display: grid;
     grid-auto-rows: auto;
     grid-auto-flow: row dense;
-    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
     gap: 0.5rem;
   }
 }
@@ -130,7 +130,7 @@ body {
     display: grid;
     grid-auto-rows: auto;
     grid-auto-flow: row dense;
-    grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+    grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
     gap: 0.5rem;
   }
 }
