@@ -67,7 +67,7 @@
 
         <div class="flex flex-col">
             <!-- Image Fetch Section -->
-            <section class="flex flex-col self-center items-center -mt-[4.5rem] w-[300px] min-[400px]:w-[400px] sm:w-[600px] md:w-[700px]  lg:w-[1000px] xl:w-[1400px] p-4 pt-10 mx-auto mb-16 lg:mb-0">
+            <div class="flex flex-col self-center items-center -mt-[4.5rem] w-[300px] min-[400px]:w-[400px] sm:w-[600px] md:w-[700px]  lg:w-[1000px] xl:w-[1400px] p-4 pt-10 mx-auto mb-16 lg:mb-0">
                 
                 <!-- Loading Spinner -->
                 <div id="loadingSpinner" class="w-16 h-16 border-4 border-dashed border-gray-800 rounded-full animate-spin mb-4" style="display: none;"></div>
@@ -77,18 +77,18 @@
                     <p id="placeholderMessage" class="text-center text-gray-500 sm:text-md md:text-xl lg:text-2xl uppercase tracking-wider mt-4">Fetch a new image to get started</p>
                     <div id="displayImage" class="-m-0 neumorphic" style="display: none;">
                         
-                        <img id="randomImage" alt="Random Image" class="object-cover w-96 h-72 sm:w-[500px] md:w-[600px] md:h-[500px] lg:w-[800px] lg:h-[500px] xl:h-[800px] xl:w-[1280px] mx-auto rounded-xl shadow-xl">
+                        <img src="#" id="randomImage" alt="Random Image" class="object-cover w-96 h-72 sm:w-[500px] md:w-[600px] md:h-[500px] lg:w-[800px] lg:h-[500px] xl:h-[800px] xl:w-[1280px] mx-auto rounded-xl shadow-xl">
                     </div>
 
                     <!-- Tooltip --> 
                     <div class="absolute top-0 left-0 w-full rounded-t-xl bg-[#e0e0e0] text-gray-600 text-xs p-2 opacity-0 group-hover:opacity-90 transition-opacity">
                         <p class="italic" id="imageDescription">No description available</p>
                         <p>Photographer:&nbsp;  
-                        <a id="photographerLink" target="_blank"  rel="noopener noreferrer" class="hover:text-gray-500 hover:cursor-pointer"></a>
+                        <a href="#" id="photographerLink" target="_blank"  rel="noopener noreferrer" class="hover:text-gray-500 hover:cursor-pointer"></a>
                         </p>
                     </div>
                 </div>
-            </section>
+            </div>
 
             <div class="flex flex-col self-center items-center mt-10 w-[300px] p-4 pt-10 mx-auto neumorphic">
                
