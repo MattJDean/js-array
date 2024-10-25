@@ -4,245 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ImageVault</title>
-    <link rel="shortcut icon" type="image/jpg" href="/public/favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/public/favicon.png">
     <!--CSS-->
-    <link rel="stylesheet" type="text/css" href="/assets/css/output.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/output.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
     <!-- Tailwind -->
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
     <!-- FontAwesome -->
-    <script src="https://kit.fontawesome.com/ee55ddb165.js" crossorigin="anonymous"></script>  
+    <script src="https://kit.fontawesome.com/ee55ddb165.js" crossorigin="anonymous"></script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+     <!-- jQuery -->
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 
 <body class="bg-neutral-50 text-zinc-900 min-h-screen flex flex-col font-['nunito']">
      
-    <div x-data="{ aboutOpen: false, ...imageApp() }" x-init="init()" class="flex-grow">
-
+    <div class="flex-grow">
         <!-- Header -->
         <header id="header" class="p-4 rounded-t-none w-auto -mx-[15px] neumorphic">
             <div class="mx-auto flex justify-between items-center">
                 <!-- Logo -->
-                <div class="tidy flex flex-row justify-start text-sm"><a href="#"><img src="assets/img/iv-logo.png" alt="logo" class="object-cover w-10 h-10 min-[350px]:w-12 min-[350px]:h-12"></a><span class="font-['nunito'] text-sm text-gray-900 tracking-[1.5px] leading-8 min-[350px]:text-lg min-[350px]:leading-10  min-[450px]:text-2xl min-[450px]:leading-10 font-bold mt-1">ImageVault</span></div>
+                <div class="tidy flex flex-row justify-start text-sm">
+                    <a href="#"><img src="assets/img/iv-logo.png" alt="logo" class="object-cover w-10 h-10 min-[350px]:w-12 min-[350px]:h-12"></a>
+                    <span class="font-['nunito'] text-sm text-gray-900 tracking-[1.5px] leading-8 min-[350px]:text-lg min-[350px]:leading-10  min-[450px]:text-2xl min-[450px]:leading-10 font-bold mt-1">ImageVault</span>
+                </div>
     
                 <!-- Navigation Menu -->
                 <nav class="tidy flex flex-row -inset-x-2.5 justify-end text-sm min-[350px]:text-lg text-center">
-                    <button @click="aboutOpen = !aboutOpen" class="w-auto text-black hover:text-[#79797a] focus:outline-none">
+                    <button id="toggleAbout" class="w-auto text-black hover:text-[#79797a] focus:outline-none">
                         <i class="fa-solid fa-info neumorphic-button px-2"></i> 
                     </button>
-                    <button class="w-auto text-black hover:text-[#79797a] px-2">
-                    <a href="mailto:matthew.dean@netmatters-scs.com"><i class="fa-regular fa-envelope neumorphic-button"></i></a>
-                    </button>
+                    <a href="mailto:matthew.dean@netmatters-scs.com" class="w-auto text-black hover:text-[#79797a] px-2">
+                    <i class="fa-regular fa-envelope neumorphic-button"></i></a>
                 </nav>
             </div>
         </header>
 
         <!-- Backdrop -->
-        <div x-show="aboutOpen" 
-            x-transition:enter="transition ease-out duration-300" 
-            x-transition:enter-start="opacity-0" 
-            x-transition:enter-end="opacity-100" 
-            x-transition:leave="transition ease-in duration-200" 
-            x-transition:leave-start="opacity-100" 
-            x-transition:leave-end="opacity-0" 
-            class="fixed inset-0 bg-black bg-opacity-30 z-40">
-        </div>
+        <div id="backdrop" class="fixed inset-0 bg-black bg-opacity-30 z-40" style="display: none;"></div>
 
         <!-- About Modal -->
         <section class="container mx-auto p-8">
-            <div x-show="aboutOpen" 
-                x-transition:enter="transition ease-out duration-300" 
-                x-transition:enter-start="opacity-0 transform scale-95" 
-                x-transition:enter-end="opacity-100 transform scale-100" 
-                x-transition:leave="transition ease-in duration-200" 
-                x-transition:leave-start="opacity-100 transform scale-100" 
-                x-transition:leave-end="opacity-0 transform scale-95" 
-                class="fixed inset-0 flex items-center justify-center z-50">
-
-              <div class="bg-[#e0e0e0] rounded-xl p-8 w-full max-w-lg font-['nunito'] absolute">
-                
-                <!-- Close Button -->
-                <button @click="aboutOpen = false" class="absolute top-3 right-3 text-gray-700 neumorphic-button p-1 px-3 hover:text-gray-500">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-                <!-- Content -->
-                <h2 class=" text-3xl font-bold text-gray-800 mb-4">What's this?</h2>
-                <p class="text-gray-600 mb-4">ImageVault allows users to assign images to their own 'vault' using their email, demonstrating the use of arrays in JavaScript and API integration.</p>
-                <p class="text-gray-600">The app was built using Tailwind CSS, Alpine.js and the <strong><a href="https://www.unsplash.com/" target="_blank">Unsplash</a></strong> / <strong><a href="https://www.pexels.com/" target="_blank">Pexels</a></strong> APIs.</p>
-              </div>
-            </div>
-        </section>
-
-    <div class="flex flex-col lg:flex-row">
-        <!-- Image Fetch Section -->
-        <section class="flex flex-col self-center items-center -mt-[4.5rem] w-[300px] min-[400px]:w-[400px] sm:w-[600px] md:w-[700px]  lg:w-[1000px] xl:w-[1400px] p-4 pt-10 mx-auto mb-16 lg:mb-0">
-            
-            <!-- Loading Spinner -->
-            <div x-show="loading" class="w-16 h-16 border-4 border-dashed border-gray-800 rounded-full animate-spin mb-4"></div>
-
-            <div class="relative group">
-                <!-- Display Image -->
-                <div x-show="image && image.url" class="-m-0 neumorphic">
-                    <img :src="image?.url" alt="Random Image" class="object-cover w-96 h-72 sm:w-[500px] md:w-[600px] md:h-[500px] lg:w-[800px] lg:h-[500px] xl:w-[1280px] mx-auto rounded-xl shadow-xl">
-                </div>
-
-                <!-- Tooltip --> 
-                <div class="absolute top-0 left-0 w-full rounded-t-xl bg-[#e0e0e0] text-gray-600 text-xs p-2 opacity-0 group-hover:opacity-90 transition-opacity">
-                    <p class="italic" x-text="image?.description ? image.description : 'No description available'"></p>
-                    <p>Photographer:&nbsp;  
-                    <a :href="image?.profileLink" target="_blank"  rel="noopener noreferrer" class="hover:text-gray-500 hover:cursor-pointer" x-text="image?.photographer"></a>
-                    </p>
+            <div id="aboutModal" class="fixed inset-0 flex items-center justify-center z-50" style="display: none;">
+                <div class="bg-[#e0e0e0] rounded-xl p-8 w-full max-w-lg font-['nunito'] absolute">
+                    <!-- Close Button -->
+                    <button id="closeAbout" class="absolute top-3 right-3 text-gray-700 neumorphic-button p-1 px-3 hover:text-gray-500">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                    <!-- Content -->
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">What's this?</h2>
+                    <p class="text-gray-600 mb-4">ImageVault allows users to assign images to their own 'vault' using their email, demonstrating the use of arrays in JavaScript and API integration.</p>
+                    <p class="text-gray-600">The app was built using Tailwind CSS, jQuery, and the <strong><a href="https://www.unsplash.com/" target="_blank">Unsplash</a></strong> API.</p>
                 </div>
             </div>
         </section>
 
-        <div class="flex flex-col self-center items-center -mt-10 w-[300px] min-[400px]:w-[400px] sm:w-[500px] md:w-[600px] lg:w-[250px] p-4 pt-10 mx-auto neumorphic">
-            <!-- Toggle Switch for Image Source -->
-            <div class="flex items-center space-x-2 -mt-2 lg:-mt-6 mb-5 lg:mb-7">          
-                <div class="inline lg:flex lg:flex-row">
-                    <h3 class="text-gray-600 text-sm sm:text-[1rem] lg:text-[0.8rem] lg:inline lg:relative lg:left-[150px] text-center bold uppercase mb-4 sm:mt-2 z-50 tracking-[1.5px]">Source</h3>
-                    <input type="radio" id="unsplash" value="unsplash" x-model="source" checked:active-radio class="appearance-none w-6 h-6 sm:w-8 sm:h-8 ml-8 lg:mr-12 lg:mt-4 border-none neumorphic-input cursor-pointer">
-                    <label for="unsplash" class="label-text relative bottom-2 sm:bottom-[0.7rem] lg:relative lg:bottom-[-3rem] left-0 sm:left-[0.2rem] md:left-[0.25rem] lg:left-[-89px] text-gray-500 text-xs sm:text-sm lg:text-[0.6rem] uppercase pr-2 xs:pr-8 sm:pr-14 lg:pr-[0.6rem]">Unsplash</label>
-                    <input type="radio" id="pexels" value="pexels" x-model="source" class="appearance-none w-6 h-6 sm:w-8 sm:h-8 lg:mt-4  border-none neumorphic-input cursor-pointer">
-                    <label for="pexels" class="label-text relative bottom-2 sm:bottom-[0.7rem] lg:relative lg:bottom-[-3rem]  left-0 sm:left-[0.2rem] md:left-[0.25rem] lg:left-[-31px] text-gray-500 text-xs sm:text-sm lg:text-[0.6rem] uppercase pr-4 lg:pr-[60px]">Pexels</label>
-                </div>
-            </div>
-
-            <!-- New Image Button -->
-             <h3 class="text-gray-600 text-sm lg:text-[0.7rem] text-center bold uppercase tracking-[1.5px]">Fetch</h3>
-            <button @click="fetchImage" class="neumorphic-button text-gray-500  p-2 py-1 m-2 mb-12" :disabled="loading" :class="loading ? 'opacity-50 cursor-not-allowed' : ''">
-                <i class="fa-solid fa-repeat leading-4 "></i>
-            </button>
-
-            <!-- Email Assign -->
-            <div class="relative flex flex-row items-center mb-6">
-                <input type="email" placeholder="Enter email..." x-model="email" class="w-full h-[45px] mb-2 text-gray-500 focus:outline-none focus:ring-0 neumorphic-input" required @keydown.enter="assignImage()" @focus="emailError = ''">
-                <button @click="assignImage()" class="absolute left-[180px] lg:left-[159px] h-[45px] neumorphic-button text-gray-500 p-1.5 px-3 hover:cursor-pointer mb-2" :disabled="!image || !email">
-                    <i class="fa-solid fa-right-to-bracket text-lg"></i>
-                </button>
-
-                <!-- Tooltip for error message -->
-                <div x-show="emailError" 
-                    class="absolute top-full left-0 mt-1 w-full bg-red-400 text-white text-[0.6rem] text-center tracking-[0.5px] uppercase p-2 rounded-md shadow-lg"
-                    x-transition:enter="transition ease-out duration-200"
-                    x-transition:leave="transition ease-in duration-200"
-                    >
-                    <p x-text="emailError"></p>
-                </div>
+        <div class="flex flex-col lg:flex-row">
+            <!-- Image Fetch Section -->
+            <section class="flex flex-col self-center items-center -mt-[4.5rem] w-[300px] min-[400px]:w-[400px] sm:w-[600px] md:w-[700px]  lg:w-[1000px] xl:w-[1400px] p-4 pt-10 mx-auto mb-16 lg:mb-0">
                 
-            </div>
-        </div>
-    </div>
+                <!-- Loading Spinner -->
+                <div id="loadingSpinner" class="w-16 h-16 border-4 border-dashed border-gray-800 rounded-full animate-spin mb-4" style="display: none;"></div>
 
-        <!-- Full Screen Modal -->
-        <div x-show="isModalOpen" 
-            class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50"
-            x-transition:enter="transition ease-in duration-300" 
-            x-transition:enter-start="opacity-0 transform scale-95" 
-            x-transition:enter-end="opacity-100 transform scale-100"
-            x-transition:leave="transition ease-out duration-300" 
-            x-transition:leave-start="opacity-100 transform scale-100" 
-            x-transition:leave-end="opacity-0 transform scale-95">
+                <div class="relative group">
+                    <!-- Display Image -->
+                    <p id="placeholderMessage" class="text-center text-gray-500 sm:text-md md:text-xl lg:text-2xl uppercase tracking-wider mt-4">Fetch a new image to get started</p>
+                    <div id="displayImage" class="-m-0 neumorphic" style="display: none;">
+                        
+                        <img id="randomImage" alt="Random Image" class="object-cover w-96 h-72 sm:w-[500px] md:w-[600px] md:h-[500px] lg:w-[800px] lg:h-[500px] xl:h-[800px] xl:w-[1280px] mx-auto rounded-xl shadow-xl">
+                    </div>
 
-            <!-- Modal Content -->
-            <div class="relative w-11/12 max-w-4xl p-0 rounded-lg">
-
-            <!-- Display image info -->
-            <div class="absolute top-0 left-0 w-auto bg-[#e0e0e0] text-gray-700 text-xs p-2 opacity-80 rounded-lg">
-                <strong class="text-gray-900">Photographer:</strong>&nbsp;<span class="text-xs" x-text="modalImage?.photographer"></span><br>
-                <strong class="text-gray-900">Profile:</strong>&nbsp;<a :href="modalImage?.profileLink" target="_blank" class="text-gray-700 hover:text-gray-600 cursor-pointer" x-text="modalImage?.profileLink"></a>
-          </div>
-            
-            <!-- Close Button -->
-            <button @click="closeModal()" class="absolute top-3 right-3 text-gray-100 hover:text-gray-900">
-                <i class="fas fa-times text-4xl"></i> 
-            </button>
-            
-            <!-- Full Screen Image -->
-            <img :src="modalImage.url" alt="Full Screen Image" class="w-full h-screen object-scale-down rounded-xl">
-            
-            </div>
-        </div>
-
-
-
-        <!-- Assigned Images Section -->
-        <div x-show="Object.keys(assignments).length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 m-4 bg-transparent">
-            <template x-for="(images, email) in assignments" :key="email">
-                <div class="bg-transparent rounded-lg w-auto p-4 pb-4 mb-6 relative">
-                    
-                    <div class="image-grid py-8 px-6 mt-2 neumorphic">
-                        <h3 class="absolute top-9 left-9 text-gray-500 text-xs uppercase font-semibold" x-text="email"></h3>
-                        <template x-for="(img, index) in images" :key="img.url">                                            
-                                <div class="relative w-full h-full object-cover rounded-2xl shadow-lg mt-2 group">
-                                    
-                                    <!-- Star Icon for Favourite -->
-                                    <div class="absolute top-3 right-2" x-show="img.favourite">
-                                        <i class="fas fa-star text-yellow-500"></i> 
-                                    </div>
-                                    <img :src="img.url" alt="Assigned Image" class="w-full h-full object-cover rounded-2xl shadow-lg mt-2">
-                                    
-                                    <!-- Hover Buttons (Favorite, View, Delete) -->
-                                    <div class="absolute left-2 top-4 flex p-0 opacity-0 z-10 group-hover:opacity-70 transition-opacity">
-                                        <!-- Favourite -->
-                                        <button 
-                                            class="w-6 h-6 flex content-center justify-center mr-1 bg-gray-700 text-white rounded-full p-1 hover:bg-white hover:text-yellow-200"
-                                            @click="handleFavourite(email, img.id)"
-                                        >
-                                            <i class="fas fa-star text-sm align-middle leading-none"></i>
-                                        </button>
-
-                                        <!-- View full screen -->
-                                        <button 
-                                            class="w-6 h-6 flex content-center justify-center mr-1 bg-gray-700 text-white rounded-full p-1 hover:bg-white hover:text-blue-200"
-                                            @click="openModal(img)"
-                                        >
-                                            <i class="fas fa-search text-sm align-middle leading-none"></i>
-                                        </button>
-
-                                        <!-- Delete image -->
-                                        <button 
-                                            class="w-6 h-6 flex content-center justify-center mr-1 bg-gray-700 text-white rounded-full p-1 hover:bg-white hover:text-red-200"
-                                            @click="openDeleteModal(email, img.id)"
-                                        >
-                                            <i class="fas fa-trash text-sm align-middle leading-none"></i>
-                                        </button>
-                                    </div>    
-                                        <!-- Delete Confirmation Modal -->
-                                        <div x-show="showDeleteModal" class="fixed z-40 inset-0 bg-gray-600 bg-opacity-10 flex items-center justify-center">
-                                            <div id="delete-box" class="p-4 w-96 bg-[#e0e0e0] rounded-xl opacity-100 z-50">
-                                                <h2 class="text-xl font-bold mb-4">Are you sure?</h2>
-                                                <p class="mb-4">Do you really want to delete this image?</p>
-                                                
-                                                <!-- Buttons for confirmation -->
-                                                <div class="flex justify-end space-x-2">
-                                                    <button @click="confirmDelete()" class="text-red-400 px-4 py-2  hover:bg-red-300 hover:text-red-600 neumorphic-button">Delete</button>
-                                                    <button @click="cancelDelete()" class="text-zinc-600 px-4 py-2  hover:bg-gray-200 hover:text-zinc-800 neumorphic-button">Cancel</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-                              </div>
-                            </div>
-                        </template>
+                    <!-- Tooltip --> 
+                    <div class="absolute top-0 left-0 w-full rounded-t-xl bg-[#e0e0e0] text-gray-600 text-xs p-2 opacity-0 group-hover:opacity-90 transition-opacity">
+                        <p class="italic" id="imageDescription">No description available</p>
+                        <p>Photographer:&nbsp;  
+                        <a id="photographerLink" target="_blank"  rel="noopener noreferrer" class="hover:text-gray-500 hover:cursor-pointer"></a>
+                        </p>
                     </div>
                 </div>
-            </template>
+            </section>
+
+            <div class="flex flex-col self-center items-center -mt-10 w-[300px] p-4 pt-10 mx-auto neumorphic">
+               
+                <!-- New Image Button -->
+                <h3 class="text-gray-600 text-sm lg:text-[0.9rem] text-center bold uppercase tracking-[1.5px] mb-1">Fetch New Image</h3>
+                <button id="fetchImageBtn" class="neumorphic-button text-gray-500  p-2 py-1 m-2 mb-12">
+                    <i class="fa-solid fa-repeat leading-4 "></i>
+                </button>
+
+                <!-- Email Assign -->
+                <div class="relative flex flex-row items-center mb-6">
+                    <input type="email" id="emailInput" placeholder="Enter email..." class="w-full h-[45px] mb-2 text-gray-500 focus:outline-none focus:ring-0 neumorphic-input" required>
+                    <button id="assignImageBtn" class="absolute left-[180px] h-[45px] neumorphic-button text-gray-500 p-1.5 px-3 hover:cursor-pointer mb-2" disabled>
+                        <i class="fa-solid fa-right-to-bracket text-lg"></i>
+                    </button>
+
+                    <!-- Tooltip for error message -->
+                    <div id="emailErrorTooltip" class="absolute top-full left-0 mt-1 w-full bg-red-400 text-white text-[0.6rem] text-center tracking-[0.5px] uppercase p-2 rounded-md shadow-lg" style="display: none;">
+                        <p id="emailError"></p>
+                    </div>
+
+                    <!-- Tooltip for success message -->
+                    <div id="emailSuccessTooltip" class="absolute top-full left-0 mt-1 w-full bg-green-200 text-zinc-800 text-[0.6rem] text-center tracking-[0.5px] uppercase p-2 rounded-md shadow-lg" style="display: none;">
+                        <p id="emailSuccess"></p>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
+        <div id="assignedImagesContainer" class="flex flex-row mt-4 gap-4">
+            
+        </div>
+
+
         <!-- Footer -->
-        <footer class="fixed bottom-0 left-0 w-full text-xs p-1 neumorphic">
+        <footer class="fixed bottom-0 left-0 w-full text-xs p-1">
             <div class="container text-left">
                 &copy; 2024 Matt Dean.
             </div>
         </footer>
+    </div>
 
 <!-- Link to external JS -->
-<script src="/assets/js/app.js"></script>
+<script type="module" src="/assets/js/app.js"></script>
 </body>
 </html>
