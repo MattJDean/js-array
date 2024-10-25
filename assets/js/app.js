@@ -1,3 +1,4 @@
+import { unsplashApi } from '/config.js';
 
 
 // Import the Unsplash module
@@ -5,7 +6,7 @@ import { createApi } from 'https://cdn.jsdelivr.net/npm/unsplash-js@7/+esm';
 
 // Unsplash API 
 const unsplash = createApi({
-  accessKey: 'zr_LaIoOYQBaSMhqpj0WT3dALRa44Y_zGiHWuh1GQTc',
+  accessKey: unsplashApi,
 });
 
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -111,7 +112,7 @@ function assignImage() {
   setTimeout(() => $('#emailSuccessTooltip').fadeOut(), 3000);
 }
 
-// Fetch Image from Unsplash/Pexels
+// Fetch Image from Unsplash
 async function fetchRandomImage() {
   try {
     $('#loadingSpinner').show();
