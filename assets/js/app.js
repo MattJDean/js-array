@@ -63,7 +63,7 @@ $(document).ready(() => {
 async function downloadImage(imageData) {
   try {
     await fetch(imageData.download_location, { 
-      headers: { Authorization: 'Client-ID zr_LaIoOYQBaSMhqpj0WT3dALRa44Y_zGiHWuh1GQTc' } 
+      headers: { Authorization: unsplashApi } // 'Client-ID zr_LaIoOYQBaSMhqpj0WT3dALRa44Y_zGiHWuh1GQTc'
     });
   } catch (error) {
     console.error("Error registering download:", error);
