@@ -31,6 +31,16 @@ $(document).ready(function() {
     });
   });
 
+  // Clear local storage
+  document.getElementById('clearLocalStorage').addEventListener('click', () => {
+    const userConfirmed = confirm('Are you sure you want to clear local storage data? This action will delete all saved images...');
+    if (userConfirmed) {
+        localStorage.clear();
+        alert('Local storage cleared');
+        location.reload();
+    } 
+  });
+
 // Event listeners
 $('#fetchImageBtn').on('click', fetchRandomImage);
 $('#assignImageBtn').on('click', assignImage);
@@ -41,6 +51,7 @@ $('#emailInput').on('keypress', function (e) {
       assignImage(); 
     }
   });
+
 
 // Save assignments to localStorage
 function saveAssignmentsToLocalStorage() {
@@ -182,7 +193,7 @@ function displayAssignedImages() {
           // View full screen button
           const viewButton = $('<button>')
             .html('<i class="fas fa-expand"></i>')
-            .addClass('text-white text-xl')
+            .addClass('text-white text-2xl')
             .on('click', () => openFullScreenModal(imageData.url));
   
           // Info button
