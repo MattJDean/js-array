@@ -622,11 +622,6 @@ video {
   inset: 0px;
 }
 
-.-inset-x-2\.5 {
-  left: -0.625rem;
-  right: -0.625rem;
-}
-
 .bottom-0 {
   bottom: 0px;
 }
@@ -697,6 +692,10 @@ video {
   margin-right: auto;
 }
 
+.-mr-2 {
+  margin-right: -0.5rem;
+}
+
 .-mt-\[4\.5rem\] {
   margin-top: -4.5rem;
 }
@@ -709,16 +708,16 @@ video {
   margin-bottom: 3rem;
 }
 
-.mb-16 {
-  margin-bottom: 4rem;
-}
-
 .mb-2 {
   margin-bottom: 0.5rem;
 }
 
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
 
 .mb-6 {
@@ -737,28 +736,16 @@ video {
   margin-top: 0.25rem;
 }
 
-.mt-10 {
-  margin-top: 2.5rem;
-}
-
 .mt-2 {
   margin-top: 0.5rem;
-}
-
-.mt-4 {
-  margin-top: 1rem;
-}
-
-.mt-5 {
-  margin-top: 1.25rem;
 }
 
 .mt-3 {
   margin-top: 0.75rem;
 }
 
-.mb-5 {
-  margin-bottom: 1.25rem;
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .inline-block {
@@ -773,10 +760,6 @@ video {
   display: none;
 }
 
-.h-10 {
-  height: 2.5rem;
-}
-
 .h-16 {
   height: 4rem;
 }
@@ -787,6 +770,10 @@ video {
 
 .h-72 {
   height: 18rem;
+}
+
+.h-8 {
+  height: 2rem;
 }
 
 .h-\[45px\] {
@@ -805,16 +792,16 @@ video {
   min-height: 100vh;
 }
 
-.w-10 {
-  width: 2.5rem;
-}
-
 .w-16 {
   width: 4rem;
 }
 
 .w-32 {
   width: 8rem;
+}
+
+.w-8 {
+  width: 2rem;
 }
 
 .w-96 {
@@ -839,6 +826,10 @@ video {
 
 .max-w-lg {
   max-width: 32rem;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
 }
 
 .flex-grow {
@@ -1107,8 +1098,8 @@ video {
   line-height: 1rem;
 }
 
-.leading-8 {
-  line-height: 2rem;
+.leading-6 {
+  line-height: 1.5rem;
 }
 
 .tracking-\[0\.5px\] {
@@ -1210,6 +1201,10 @@ video {
   transition-duration: 150ms;
 }
 
+html {
+  overflow-x: hidden !important;
+}
+
 body {
   margin-right:auto;
   margin-left:auto;
@@ -1303,6 +1298,20 @@ body {
   transition: box-shadow 0.2s ease !important;
 }
 
+.neumorphic-button-nav {
+  background: #e0e0e0 !important;
+  border-radius: 30px !important;
+  box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff !important;
+  padding: 0.5rem 1rem !important;
+  transition: box-shadow 0.2s ease !important;
+}
+
+@media (min-width: 320px){
+  .neumorphic-button-nav {
+    padding: 0.75rem 1.5rem !important;
+  }
+}
+
 .neumorphic-button:hover {
   box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff !important;
 }
@@ -1388,25 +1397,6 @@ body {
   opacity: 0.9;
 }
 
-@media (min-width: 350px) {
-  .min-\[350px\]\:h-12 {
-    height: 3rem;
-  }
-
-  .min-\[350px\]\:w-12 {
-    width: 3rem;
-  }
-
-  .min-\[350px\]\:text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
-
-  .min-\[350px\]\:leading-10 {
-    line-height: 2.5rem;
-  }
-}
-
 @media (min-width: 400px) {
   .min-\[400px\]\:w-\[400px\] {
     width: 400px;
@@ -1414,13 +1404,26 @@ body {
 }
 
 @media (min-width: 450px) {
+  .min-\[450px\]\:h-10 {
+    height: 2.5rem;
+  }
+
+  .min-\[450px\]\:w-10 {
+    width: 2.5rem;
+  }
+
   .min-\[450px\]\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
   }
 
-  .min-\[450px\]\:leading-10 {
-    line-height: 2.5rem;
+  .min-\[450px\]\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .min-\[450px\]\:leading-8 {
+    line-height: 2rem;
   }
 }
 
@@ -1454,10 +1457,6 @@ body {
 }
 
 @media (min-width: 1024px) {
-  .lg\:mb-0 {
-    margin-bottom: 0px;
-  }
-
   .lg\:h-\[500px\] {
     height: 500px;
   }

@@ -1,3 +1,8 @@
+body {
+    overflow-x: hidden;
+}
+
+
 
 #header {
   border-top-right-radius: 0 !important;
